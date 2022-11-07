@@ -1,13 +1,12 @@
 <script lang="ts">
 	import type { drawFn, Point } from "src/types";
 	import { getContext, onDestroy, onMount, setContext } from "svelte";
-	import { writable } from "svelte/store";
+	import { canvasDims } from "$lib/stores/canvasStore"
     let canvasElement: HTMLCanvasElement;
     let draws: drawFn[] = [];
     let frame: number;
 
     console.log("Canvas.svelte: Initialized");
-
     setContext("canvas", {
         addDrawFn: (fn: drawFn) => {
             draws.push(fn);
@@ -35,6 +34,10 @@
     });
 
     const draw = (ctx: CanvasRenderingContext2D) => {
+        ctx.canvas.width = window.innerWidth;
+        $canvasDims.x = window.innerWidth;
+        ctx.canvas.height = window.innerHeight;
+        $canvasDims.y = window.innerHeight;
         ctx.clearRect(0, 0, canvasElement.width, canvasElement.height);
         draws.forEach(element => {
             element(ctx);

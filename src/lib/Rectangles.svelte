@@ -12,20 +12,22 @@
 
     });
 
-    let x = 0;
-    const draw = (ctx: CanvasRenderingContext2D) => {
-        ctx.canvas.width = window.innerWidth;
-        ctx.canvas.height = window.innerHeight;
-        ctx.save();
-        ctx.moveTo(0, 0);
+    const skewedRectangle = (ctx: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, skew: number) => {
         ctx.beginPath();
-        ctx.lineTo(500, x);
-        ctx.lineTo(50, 500);
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + width, y);
+        ctx.lineTo(x + width + skew, y + height);
+        ctx.lineTo(x + skew, y + height);
         ctx.closePath();
         ctx.stroke();
-        ctx.fill();
+    }
+
+    let x = 0;
+    const draw = (ctx: CanvasRenderingContext2D) => {
+        ctx.save();
+        skewedRectangle(ctx, x, ctx.canvas.height / 2, 100, 100, 50);
         ctx.restore();
-        x += 0.01;
+        x < ctx.canvas.width ? x += 15 : x = 0;
 
     }
 </script>
