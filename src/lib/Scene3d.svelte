@@ -19,15 +19,15 @@
     //     actions['Take 001']?.play();
     // });
 
-    const { gltf } = useGltf('src/models/willow_optimized.glb', {
+    const { gltf } = useGltf('src/models/cubetree.glb', {
     useDraco: true
   })
 
-    useGltfAnimations<'Take 001'>(gltf, ({ actions, mixer }) => {
-        mixer.timeScale = 0.5;
-        actions['Take 001']?.play();
-        console.log("COMPLETE");
-    });
+    // useGltfAnimations<'Take 001'>(gltf, ({ actions, mixer }) => {
+    //     mixer.timeScale = 0.5;
+    //     actions['Take 001']?.play();
+    //     console.log("COMPLETE");
+    // });
 
   const rotation = tweened(0, {
     duration: 500,
@@ -59,15 +59,14 @@
 <DirectionalLight position={{ x: -3, y: 10, z: -10 }} intensity={0.2} />
 <AmbientLight intensity={0.2} />
 {#if $gltf}
-    {tempTree = $gltf.scene}
-    {tempTree.position.set(8, 0, -15)}
-    {animGroup.add(tempTree)}
-    {scene.add(tempTree)}
-    {tempTree2 = $gltf.scene}
-    {tempTree2.position.set(-5, 0, -15)}
-    {animGroup.add(tempTree2)}
-    {scene.add(tempTree2)}
-    {mixer.clipAction($gltf.animations[0], animGroup).play()}
+
+    {scene.add($gltf.scene)}
+    {tempTree = $gltf.scene.clone()}
+    {tempTree.position.set(5, 0, 0)}
+    
+    {console.log($gltf)}
+
+
     
 
     
