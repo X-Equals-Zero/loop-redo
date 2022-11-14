@@ -58,20 +58,7 @@
 <DirectionalLight position={{ x: 3, y: 10, z: 10 }} />
 <DirectionalLight position={{ x: -3, y: 10, z: -10 }} intensity={0.2} />
 <AmbientLight intensity={0.2} />
-{#if $gltf}
 
-    {scene.add($gltf.scene)}
-    {tempTree = $gltf.scene.clone()}
-    {tempTree.position.set(5, 0, 0)}
-    
-    {console.log($gltf)}
-
-
-    
-
-    
-    <!-- <Mesh geometry={$gltf.nodes['tree'].geometry} material={new MeshStandardMaterial()} /> -->
-{/if}
     
 
 <!-- <Group>
@@ -85,8 +72,8 @@
 
 {/if} -->
 
-<!-- {#if $gltf}
-<InstancedMesh geometry={$gltf?.nodes['tree'].geometry} material={$gltf?.materials['Material.001']}>
+{#if $gltf}
+<InstancedMesh geometry={$gltf?.nodes} material={$gltf?.materials['Material.001']}>
     <Instance position={{x: $canvasDims.x / 200}} rotation={{y: $rotation * 5}} />
     <Instance position={{x: $canvasDims.x / -200}} rotation={{y: $rotation *  - 5}} />
     <Instance position={{x: $canvasDims.x / 350, y: 5, z: -10}} rotation={{y: $rotation * 5}} />
@@ -99,4 +86,4 @@
     <Instance position={{x: $canvasDims.x / -350, y: 5, z: -10}} rotation={{y: $rotation * -5}} />
 </InstancedMesh> 
 
-{/if}  -->
+{/if} 
