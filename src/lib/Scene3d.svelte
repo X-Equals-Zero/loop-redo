@@ -74,10 +74,11 @@
 
 {#if $gltf}
 <InstancedMesh geometry={$gltf?.nodes} material={$gltf?.materials['Material.001']}>
+  <Instance position={{x: $canvasDims.x / 350, y: 5, z: -10}} rotation={{y: $rotation * 5}} />
+    <Instance position={{x: $canvasDims.x / -350, y: 5, z: -10}} rotation={{y: $rotation * -5}} />
     <Instance position={{x: $canvasDims.x / 200}} rotation={{y: $rotation * 5}} />
     <Instance position={{x: $canvasDims.x / -200}} rotation={{y: $rotation *  - 5}} />
-    <Instance position={{x: $canvasDims.x / 350, y: 5, z: -10}} rotation={{y: $rotation * 5}} />
-    <Instance position={{x: $canvasDims.x / -350, y: 5, z: -10}} rotation={{y: $rotation * -5}} />
+    
 </InstancedMesh>
 <InstancedMesh geometry={$gltf?.nodes['Plane'].geometry} material={$gltf?.materials['Material.002']}>
     <Instance position={{x: $canvasDims.x / 200}} rotation={{y: $rotation * 5}} />
